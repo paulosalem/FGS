@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+   <!-- Uncomment below to customize -->
+   <!-- 
+	<entry key="Repository's Path">
+      /home/user/simulation-components
+	</entry>
+	
+	<entry key="Libraries' Path">
+	   /home/user/simulation-libraries
+	</entry> 
+    -->
+ 
+
+
+</properties>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<organism>
+    
+  <stimulation-subsystem>
+
+    <stimulation-parameters>
+      <stimulation-hints>
+        <pleasure-hints>
+          <stimulus id="0" />
+        </pleasure-hints>
+        <pain-hints>
+        </pain-hints>
+      </stimulation-hints>
+
+      <stimuli>
+        <!-- Philosophers enjoy wine with moderation -->
+        <stimulus id="0" name="wine" primary="true" utility="0.4" />
+        
+        <!-- Philosophers love Philosophy, obviously -->
+        <stimulus id="1" name="s_verbal_philosophy" primary="true" utility="1.0"/>
+        
+        <stimulus id="2" name="s_verbal_sophisms" />
+        
+        <!-- Philosophers detest ignorance -->
+        <stimulus id="3" name="s_verbal_ignorance" primary="true" utility="-1.0"/>
+        
+        <!-- In principle, Philosophers do not fear death -->
+        <stimulus id="4" name="s_verbal_death" />
+        
+        <!-- Philosophers clearly like books -->
+        <stimulus id="5" name="books" primary="true" utility="0.7"/>
+        
+        <stimulus id="6" name="s_verbal_joke" primary="true" utility="0.6"/>
+        
+        <stimulus id="7" name="s_money" primary="true" utility="0.3"/>
+        
+        <stimulus id="8" name="s_ad_1" />
+        
+        <!-- Virtual points that can be exchanged for money -->
+        <stimulus id="9" name="points" />
+      </stimuli>
+      
+
+      <!-- Philosophers have a long memory for causal relations -->
+      <max-delay value="100" />
+
+
+    </stimulation-parameters>
+
+    <conditioning-parameters>
+        <c value="0.05 "/>
+    </conditioning-parameters>
+
+    
+    <stimulus-implication>
+    
+        <!-- Philosophers consider sophisms as ignorance-->
+        <cause id1="2" id2="3" correlation="1.0" />
+        
+        <!-- Death often reminds Philosophers of their Philosophy -->
+        <cause id1="4" id2="1" correlation="0.5" />
+        
+        <!-- Advertisements are normally related to books. -->
+        <cause id1="8" id2="5" correlation="0.5" />
+        
+        
+        <!-- Virtual points can be redeemed as real money -->
+        <cause id1="9" id2="7" correlation="1.0" />
+        
+    </stimulus-implication>
+  </stimulation-subsystem>
+  
+
+
+  <responding-subsystem>
+    
+    <actions>
+
+      <!-- Contrary to popular belief, true Philosophers like jokes  -->
+      <action id="0" name="a_verbal_joke" base-level="0.01" operant="true" reflex="true" />
+    
+      <!-- Philosophers often talk about Philosophy for no good reason! -->
+      <action id="1" name="a_verbal_philosophy" base-level="0.3" operant="true" reflex="true" />
+      
+      <!-- Philosophers do not complain on their own very much -->
+      <action id="2" name="a_verbal_complaint" base-level="0.01" operant="true" reflex="true" />
+      
+      <action id="3" name="a_forward_ad_1" base-level="0.0" operant="true" reflex="true" />
+      
+      <action id="4" name="a_buy_ad_1" base-level="0.0" operant="true" reflex="true" />
+      
+    </actions>
+    
+    <action-conflict>
+      <conflict id1="0" id2="4"/>
+    </action-conflict>
+
+    <operants>
+    
+      <!-- Philosophers amuse themselves with their own jokes -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0"/>
+        </antecedents>
+        <action id="0"/>
+        <consequence id="6"/>
+      </operant>
+    
+      <!-- "To fight ignorance, nature gave us reason." --> 
+      <operant>
+        <antecedents>
+          <antecedent contingency="0.9">
+            <stimulus id="3"/>
+          </antecedent>
+        </antecedents>
+        <action id="1"/>
+        <consequence id="1"/>
+      </operant>
+      
+      
+       <!-- Ad 1 forwarding operant -->
+       <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="8"/>
+          </antecedent>
+        </antecedents>
+        <action id="3"/>
+        <consequence id="9"/>
+      </operant>
+      
+       <!-- Ad 1 shopping operant. We are assuming that Ad 1 is about books. -->
+       <operant>
+        <antecedents>
+         <antecedent contingency="1.0">
+            <stimulus id="8"/>
+          </antecedent>
+        </antecedents>
+        <action id="4"/>
+        <consequence id="5"/>
+      </operant>
+      
+    </operants>
+    
+    
+    <reflexes>
+    
+      <!-- Wine make Philosophers prone to telling jokes -->
+      <reflex>
+      
+        <reflex-parameters>
+          <max-elicitation value="1.0" />
+          <min-elicitation value="0.9" />
+          <max-strength value="1.0" />
+          <min-strength value="0.5" />
+          <max-duration value="10" />
+          <min-duration value="2" />
+          <max-latency value="10" />
+          <min-latency value="1" />
+          <max-threshold value="0.3" />
+          <min-threshold value="0.1" />
+        </reflex-parameters>
+        
+        <antecedent-stimulus id="0" />
+        <action id="0" />
+        <threshold value="0.3" />
+        <elicitation value="1.0" />
+        <strength value="1.0" />
+        <duration value="30" />
+        <latency value="1" />
+      </reflex>
+      
+      <!-- Ignorance makes Philosophers complain -->
+      <reflex>
+      
+        <reflex-parameters>
+          <max-elicitation value="1.0" />
+          <min-elicitation value="0.9" />
+          <max-strength value="1.0" />
+          <min-strength value="0.5" />
+          <max-duration value="10" />
+          <min-duration value="2" />
+          <max-latency value="10" />
+          <min-latency value="1" />
+          <max-threshold value="0.3" />
+          <min-threshold value="0.1" />
+        </reflex-parameters>
+        
+        <antecedent-stimulus id="3" />
+        <action id="2" />
+        <threshold value="0.3" />
+        <elicitation value="1.0" />
+        <strength value="1.0" />
+        <duration value="10" />
+        <latency value="1" />
+      </reflex>
+      
+    </reflexes>
+
+  </responding-subsystem>
+  
+
+
+
+
+  <drive-subsystem>
+    <drives>
+    
+    
+      <!-- Philosophers must drink some wine from time to time. -->
+      <drive>
+        <importance value="0.0"/>
+        <max-importance value="1.0"/>
+        <min-importance value="-1.0"/>
+        <desires>
+          <stimulus id="0" />
+        </desires>
+      </drive>
+
+
+      <!-- Philosophers sometimes get tired of reading books, because they need
+           time to absorb knowledge. -->
+      <drive>
+        <importance value="0.0"/>
+        <max-importance value="1.0"/>
+        <min-importance value="-0.5"/>
+        <desires>
+          <stimulus id="5" />
+        </desires>
+      </drive>
+
+    </drives>
+  </drive-subsystem>
+
+
+
+  <emotion-subsystem>
+    <anger status="INACTIVE" intensity="0.0" duration="0" />
+    <depression status="INACTIVE" intensity="0.0" duration="0" />
+    <frustration status="INACTIVE" intensity="0.0" duration="0" />
+  </emotion-subsystem>
+
+</organism>
+
+

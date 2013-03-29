@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<organism>
+    
+  <stimulation-subsystem>
+
+    <stimulation-parameters>
+      <stimulation-hints>
+        <pleasure-hints>
+          <stimulus id="0" />
+        </pleasure-hints>
+        <pain-hints>
+          <stimulus id="4" />
+        </pain-hints>
+      </stimulation-hints>
+
+      <stimuli>
+        <stimulus id="0" name="food" primary="true" utility="0.9" />
+        <stimulus id="1" name="bell" />
+        <stimulus id="2" name="whistle" />
+        <stimulus id="3" name="injection" primary="true" utility="-0.6" />
+        <stimulus id="4" name="veterinary" primary="false" />
+        <stimulus id="5" name="neutral" primary="true" utility="0.0" />
+        <stimulus id="6" name="bark_sound" primary="true" utility="0.1" />
+      </stimuli>
+
+      <max-delay value="100" />
+
+    </stimulation-parameters>
+
+    <conditioning-parameters>
+        <c value="0.5"/>
+    </conditioning-parameters>
+    
+    <stimulus-implication>
+            
+    </stimulus-implication>
+  </stimulation-subsystem>
+  
+  
+  <responding-subsystem>
+    
+    <actions>
+      <action id="0" name="salivate" base-level="0.0" operant="false" reflex="true" />
+      <action id="1" name="bark" base-level="0.2" operant="true" reflex="true" />
+      <action id="2" name="sit" base-level="0.1" operant="true" reflex="true" />
+      <action id="3" name="push_lever" base-level="0.0" operant="true" reflex="true" />
+    </actions>
+    
+    <action-conflict />
+    
+    <operants>
+    
+      <operant>
+        <antecedents>
+          <antecedent contingency="0.9"/>
+        </antecedents>
+        <action id="3"/> <!-- push_lever -->
+        <consequence id="1"/> <!-- bell -->
+      </operant>
+      
+      <operant>
+        <antecedents>
+          <antecedent contingency="0.9"/>
+        </antecedents>
+        <action id="1"/> <!-- bark -->
+        <consequence id="6"/> <!-- bark_sound -->
+      </operant>
+    
+    </operants>
+    
+    
+    <reflexes>
+      <reflex>
+        <reflex-parameters>
+          <max-elicitation value="1.0" />
+          <min-elicitation value="0.9" />
+          <max-strength value="1.0" />
+          <min-strength value="0.5" />
+          <max-duration value="10" />
+          <min-duration value="2" />
+          <max-latency value="10" />
+          <min-latency value="1" />
+          <max-threshold value="0.1" />
+          <min-threshold value="0.3" />
+        </reflex-parameters>
+        <antecedent-stimulus id="0" />
+        <action id="0" />
+        <threshold value="0.3" />
+        <elicitation value="1.0" />
+        <strength value="1.0" />
+        <duration value="2" />
+        <latency value="1" />
+      </reflex>
+    </reflexes>
+
+  </responding-subsystem>
+  
+  <drive-subsystem>
+    <drives/>
+  </drive-subsystem>
+
+  <emotion-subsystem>
+    <anger status="INACTIVE" intensity="0.0" duration="0" />
+    <depression status="INACTIVE" intensity="0.0" duration="0" />
+    <frustration status="INACTIVE" intensity="0.0" duration="0" />
+  </emotion-subsystem>
+
+</organism>
+
+

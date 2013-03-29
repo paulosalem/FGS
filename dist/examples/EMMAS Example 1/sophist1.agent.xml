@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<organism>
+    
+  <stimulation-subsystem>
+
+    <stimulation-parameters>
+      <stimulation-hints>
+        <pleasure-hints>
+          <stimulus id="0" />
+        </pleasure-hints>
+        <pain-hints>
+        </pain-hints>
+      </stimulation-hints>
+
+      <stimuli>
+        <!-- Every Greek likes wine, but Philosophers enjoy it with moderation -->
+        <stimulus id="0" name="wine" primary="true" utility="0.5" />
+        
+        <!-- Philosophers love Philosophy, obviously -->
+        <stimulus id="1" name="s_verbal_philosophy" primary="true" utility="1.0"/>
+        
+        <stimulus id="2" name="s_verbal_sophisms" />
+        
+        <!-- Philosophers detest ignorance -->
+        <stimulus id="3" name="s_verbal_ignorance" primary="true" utility="-1.0"/>
+        
+        <!-- In principle, Philosophers do not fear death -->
+        <stimulus id="4" name="s_verbal_death" />
+        
+        <stimulus id="5" name="books" primary="true" utility="0.7"/>
+      </stimuli>
+      
+
+      <!-- Philosophers have a long memory for causal relations -->
+      <max-delay value="100" />
+
+
+    </stimulation-parameters>
+
+    <conditioning-parameters>
+        <c value="0.5"/>
+    </conditioning-parameters>
+    
+    <stimulus-implication>
+    
+        <!-- Philosophers consider sophisms as ignorance-->
+        <cause id1="2" id2="3" correlation="1.0" />
+        
+        <!-- Death often reminds Philosophers of their Philosophy -->
+        <cause id1="4" id2="1" correlation="0.5" />
+        
+    </stimulus-implication>
+  </stimulation-subsystem>
+  
+
+
+  <responding-subsystem>
+    
+    <actions>
+    
+      <!-- Philosophers often talk about Philosophy for no good reason! -->
+      <action id="0" name="a_verbal_philosophy" base-level="0.3" operant="true" reflex="false" />
+      
+    </actions>
+    
+    <action-conflict />
+
+    <operants>
+    
+      <!-- "To fight ignorance, nature gave us reason." -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="0.9">
+            <stimulus id="3"/>
+          </antecedent>
+        </antecedents>
+        <action id="0"/>
+        <consequence id="1"/>
+      </operant>
+      
+    </operants>
+    
+    
+    <reflexes>
+      
+    </reflexes>
+
+  </responding-subsystem>
+  
+
+
+
+
+  <drive-subsystem>
+    <drives>
+    
+      <!-- Greeks must drink some wine from time to time -->
+      <drive>
+        <importance>0.0</importance>
+        <desires>
+          <stimulus id="0" />
+        </desires>
+      </drive>
+
+    </drives>
+  </drive-subsystem>
+
+
+
+
+
+
+  <emotion-subsystem>
+    <anger status="INACTIVE" intensity="0.0" duration="0" />
+    <depression status="INACTIVE" intensity="0.0" duration="0" />
+    <frustration status="INACTIVE" intensity="0.0" duration="0" />
+  </emotion-subsystem>
+
+</organism>
+
+

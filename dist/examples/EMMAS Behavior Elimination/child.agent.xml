@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<organism>
+    
+  <stimulation-subsystem>
+
+    <stimulation-parameters>
+      <stimulation-hints>
+        <pleasure-hints>
+          <stimulus id="5" />
+        </pleasure-hints>
+        <pain-hints>
+          <stimulus id="3" />
+          <stimulus id="4" />
+        </pain-hints>
+      </stimulation-hints>
+
+      <stimuli>
+        <stimulus id="0" name="praise" primary="true" utility="0.5" />
+        <stimulus id="1" name="candy"  primary="true" utility="0.9" />
+        <stimulus id="2" name="punch" primary="true" utility="-0.6" />
+        <stimulus id="3" name="scream_sound" primary="true" utility="0.2"/>
+        <stimulus id="4" name="cry_sound" primary="true" utility="0.2" />
+        <stimulus id="5" name="neutral"/>
+      </stimuli>
+
+      <max-delay value="10" />
+
+    </stimulation-parameters>
+
+    <conditioning-parameters>
+        <c value="0.5"/>
+    </conditioning-parameters>
+    
+    <stimulus-implication>
+            
+    </stimulus-implication>
+  </stimulation-subsystem>
+  
+  
+  <responding-subsystem>
+    
+    <actions>
+      <action id="0" name="beat" base-level="0.0" operant="true" reflex="true" />
+      <action id="1" name="caress" base-level="0.2" operant="true" reflex="true" />
+    </actions>
+    
+    
+    <action-conflict>
+      <conflict id1="0" id2="1"/>
+      <conflict id1="0" id2="2"/>
+    </action-conflict>
+    
+    <operants>
+      <operant>
+        <antecedents>
+          <antecedent contingency="0.9"/>
+        </antecedents>
+        <action id="0"/> <!-- beat -->
+        <consequence id="3"/> <!-- scream_sound -->
+      </operant>
+    
+    </operants>
+    
+    
+    <reflexes>
+ 
+    </reflexes>
+
+  </responding-subsystem>
+  
+  <drive-subsystem>
+    <drives>
+    
+      <drive>
+        <importance value="0.0"/>
+        <max-importance value="0.0"/>
+        <min-importance value="-1.0"/>
+        <desires>
+          <stimulus id="3" />
+        </desires>
+      </drive>
+      
+
+    </drives>
+  </drive-subsystem>
+
+  <emotion-subsystem>
+    <anger status="INACTIVE" intensity="0.0" duration="0" />
+    <depression status="INACTIVE" intensity="0.0" duration="0" />
+    <frustration status="INACTIVE" intensity="0.0" duration="0" />
+  </emotion-subsystem>
+
+</organism>
+
+
+

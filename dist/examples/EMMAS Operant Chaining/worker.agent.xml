@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<organism>
+    
+  <stimulation-subsystem>
+
+    <stimulation-parameters>
+      <stimulation-hints>
+        <pleasure-hints>
+          <stimulus id="0" />
+        </pleasure-hints>
+        <pain-hints>
+        </pain-hints>
+      </stimulation-hints>
+
+      <stimuli>
+        <stimulus id="0" name="food" primary="true" utility="0.9" />
+        <stimulus id="1" name="money" />
+        <stimulus id="2" name="work_place" />
+        <stimulus id="3" name="home" />
+      </stimuli>
+
+      <max-delay value="10" />
+
+    </stimulation-parameters>
+
+    <conditioning-parameters>
+        <c value="0.5"/>
+    </conditioning-parameters>
+    
+    <stimulus-implication>
+            
+    </stimulus-implication>
+  </stimulation-subsystem>
+  
+  
+  <responding-subsystem>
+    
+    <actions>
+      <action id="0" name="work" base-level="0.0" operant="true" reflex="false" />
+      <action id="1" name="buy_food" base-level="0.0" operant="true" reflex="false" />
+      <action id="2" name="wakeup_early" base-level="0.0" operant="true" reflex="true" />
+    </actions>
+    
+    <action-conflict />
+    
+    <operants>
+    
+      <!-- Wake up and go to work -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="0.9">
+            <stimulus id="3"/>
+          </antecedent>
+        </antecedents>
+        <action id="2"/>
+        <consequence id="2"/>
+      </operant>
+      
+      <!-- Work -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="2"/>
+          </antecedent>
+        </antecedents>
+        <action id="0"/>
+        <consequence id="1"/>
+      </operant>
+      
+      <!-- Buy food -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="1"/>
+          </antecedent>
+        </antecedents>
+        <action id="1"/>
+        <consequence id="0"/>
+      </operant>
+      
+    </operants>
+    
+    <reflexes/>
+    
+  </responding-subsystem>
+  
+  <drive-subsystem>
+    <drives>
+    
+      <drive>
+        <importance value="0.0"/>
+        <max-importance value="1.0"/>
+        <min-importance value="-1.0"/>
+        <desires>
+          <stimulus id="0" />
+        </desires>
+      </drive>
+
+    </drives>
+  </drive-subsystem>
+
+  <emotion-subsystem>
+    <anger status="INACTIVE" intensity="0.0" duration="0" />
+    <depression status="INACTIVE" intensity="0.0" duration="0" />
+    <frustration status="INACTIVE" intensity="0.0" duration="0" />
+  </emotion-subsystem>
+
+</organism>

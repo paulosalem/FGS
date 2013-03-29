@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<experiment name="Standard Simulation" description="Runs a standard simulation." >
+
+  <!-- A standard simulation  -->
+  <standard-simulation name="A standard simulation" runs="1" iterations-per-run="100"/>
+
+</experiment>

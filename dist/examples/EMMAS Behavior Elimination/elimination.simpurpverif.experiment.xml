@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+
+<experiment name="Behaviour elimination" 
+            description="Eliminates undesirable behaviours by reinforcement instead of punishment." >
+
+  <simulation-purpose-verification relation="strong feasibility">
+
+    <states>
+     <state id="initial"/>
+     
+     <!-- Requires that this state must be annotated with the specified literal -->
+     <state id="1">
+       <literal proposition="LikesCandy" type="positive"/>
+     </state>
+     
+     <state id="2"/>   <state id="3"/>   <state id="4"/>   <state id="5"/>   <state id="6"/>   <state id="7"/>
+     <state id="8"/>   <state id="9"/>   <state id="10"/>   <state id="11"/>   <state id="12"/>   <state id="13"/>
+     <state id="14"/>   <state id="15"/>   <state id="16"/>   <state id="17"/>   <state id="18"/>   <state id="19"/>
+     <state id="20"/>   <state id="21"/>   <state id="22"/>   <state id="23"/>   <state id="24"/>   <state id="25"/>
+     <state id="26"/>   <state id="27"/>   <state id="28"/>   <state id="29"/>   <state id="30"/>   <state id="31"/>
+     <state id="32"/>   <state id="33"/>   <state id="34"/>   <state id="35"/>   <state id="36"/>   <state id="37"/>
+     <state id="38"/>   <state id="39"/>   <state id="40"/>   <state id="41"/>   <state id="42"/>   <state id="43"/>
+     <state id="44"/>   <state id="45"/>   <state id="46"/>   <state id="47"/>   
+    </states>
+    
+    <events>
+      <!-- Child events -->
+      <emmas-event id="!emit_beat_0" type="output" name="emit" action="beat" agent-id="0"/>
+      <emmas-event id="!stop_beat_0" type="output" name="stop" action="beat" agent-id="0"/>
+      <emmas-event id="!emit_caress_0" type="output" name="emit" action="caress" agent-id="0"/>
+      <emmas-event id="!stop_caress_0" type="output" name="stop" action="caress" agent-id="0"/>
+      <emmas-event id="?beg_candy_0" type="input" name="beginning" stimulus="candy" agent-id="0"/>
+      <emmas-event id="?sta_candy_0" type="input" name="stable" stimulus="candy" agent-id="0"/>
+      <emmas-event id="?end_candy_0" type="input" name="ending" stimulus="candy" agent-id="0"/>
+      <emmas-event id="?abs_candy_0" type="input" name="absent" stimulus="candy" agent-id="0"/>
+      <emmas-event id="?beg_neutral_0" type="input" name="beginning" stimulus="neutral" agent-id="0"/>
+      <emmas-event id="?sta_neutral_0" type="input" name="stable" stimulus="neutral" agent-id="0"/>
+      <emmas-event id="?end_neutral_0" type="input" name="ending" stimulus="neutral" agent-id="0"/>
+      <emmas-event id="?abs_neutral_0" type="input" name="absent" stimulus="neutral" agent-id="0"/>
+      <emmas-event id="?beg_scream_sound_0" type="input" name="beginning" stimulus="scream_sound" agent-id="0"/>
+      <emmas-event id="?sta_scream_sound_0" type="input" name="stable" stimulus="scream_sound" agent-id="0"/>
+      <emmas-event id="?end_scream_sound_0" type="input" name="ending" stimulus="scream_sound" agent-id="0"/>
+      <emmas-event id="?abs_scream_sound_0" type="input" name="absent" stimulus="scream_sound" agent-id="0"/>
+      
+      <!-- Dog events -->
+      <emmas-event id="!emit_scream_1" type="output" name="emit" action="scream" agent-id="1"/>
+      <emmas-event id="!stop_scream_1" type="output" name="stop" action="scream" agent-id="1"/>
+      <emmas-event id="?beg_caress_1" type="input" name="beginning" stimulus="caress" agent-id="1"/>
+      <emmas-event id="?sta_caress_1" type="input" name="stable" stimulus="caress" agent-id="1"/>
+      <emmas-event id="?end_caress_1" type="input" name="ending" stimulus="caress" agent-id="1"/>
+      <emmas-event id="?abs_caress_1" type="input" name="absent" stimulus="caress" agent-id="1"/>
+      <emmas-event id="?beg_punch_1" type="input" name="beginning" stimulus="punch" agent-id="1"/>
+      <emmas-event id="?sta_punch_1" type="input" name="stable" stimulus="punch" agent-id="1"/>
+      <emmas-event id="?end_punch_1" type="input" name="ending" stimulus="punch" agent-id="1"/>
+      <emmas-event id="?abs_punch_1" type="input" name="absent" stimulus="punch" agent-id="1"/>
+      
+    </events>
+    
+
+    <transitions>
+
+     <!-- Let  the child beat the dog and (temporarily) get tired of it -->
+     <transition state-id1="initial" event-id="?beg_neutral_0" state-id2="1"/> <!-- Establish a discriminative stimulus -->
+     <transition state-id1="1" event-id="?commit" state-id2="1"/>              <!-- Loop here -->
+     <transition state-id1="1" event-id="!emit_beat_0" state-id2="3"/>
+     <transition state-id1="3" event-id="?commit" state-id2="4"/>
+     <transition state-id1="4" event-id="?beg_punch_1" state-id2="5"/>
+     <transition state-id1="5" event-id="?commit" state-id2="6"/>
+     <transition state-id1="6" event-id="?sta_punch_1" state-id2="7"/>
+     <transition state-id1="7" event-id="?sta_neutral_0" state-id2="8"/>
+     <transition state-id1="8" event-id="?commit" state-id2="9"/>
+     <transition state-id1="9" event-id="?commit" state-id2="10"/>
+     <transition state-id1="10" event-id="!emit_scream_1" state-id2="11"/>
+     <transition state-id1="11" event-id="?beg_scream_sound_0" state-id2="12"/>
+     <transition state-id1="12" event-id="?commit" state-id2="13"/>
+     <transition state-id1="13" event-id="?sta_scream_sound_0" state-id2="14"/>
+     
+     
+     <transition state-id1="14" event-id="?commit" state-id2="14"/>     <!-- Loop here -->
+     <transition state-id1="14" event-id="!stop_scream_1" state-id2="15"/>
+     
+     <transition state-id1="15" event-id="?commit" state-id2="16"/>
+     <transition state-id1="16" event-id="?end_scream_sound_0" state-id2="17"/>
+     <transition state-id1="17" event-id="?commit" state-id2="18"/>
+     <transition state-id1="18" event-id="?abs_scream_sound_0" state-id2="19"/>
+     <transition state-id1="19" event-id="?commit" state-id2="20"/>
+     
+     <!-- Reward an eventual caress with candy -->
+     <transition state-id1="20" event-id="!emit_caress_0" state-id2="21"/>
+     
+     <transition state-id1="21" event-id="?beg_caress_1" state-id2="22"/>
+     
+     <transition state-id1="22" event-id="?commit" state-id2="23"/>
+     <transition state-id1="23" event-id="?sta_caress_1" state-id2="24"/>
+     <transition state-id1="24" event-id="?commit" state-id2="24"/>
+     
+     <transition state-id1="24" event-id="!stop_caress_0" state-id2="25"/>
+     <transition state-id1="25" event-id="?beg_candy_0" state-id2="26"/>
+     
+     
+     <transition state-id1="26" event-id="?end_caress_1" state-id2="27"/>
+     <transition state-id1="27" event-id="?commit" state-id2="28"/>
+     <transition state-id1="28" event-id="?abs_caress_1" state-id2="29"/>
+     
+     <transition state-id1="29" event-id="?sta_candy_0" state-id2="30"/>
+     <transition state-id1="30" event-id="?commit" state-id2="31"/>
+     <transition state-id1="31" event-id="internal" state-id2="32"/>
+     
+     <!-- Make sure that the child is no longer beating the dog. To do this, we
+          assume the use of the strong feasibility relation. -->
+     <transition state-id1="32" event-id="?end_candy_0" state-id2="33"/>
+     <transition state-id1="33" event-id="?commit" state-id2="34"/>
+     <transition state-id1="33" event-id="!emit_beat_0" state-id2="failure"/> 
+     <transition state-id1="34" event-id="!stop_beat_0" state-id2="35"/>
+     <transition state-id1="34" event-id="!emit_beat_0" state-id2="failure"/>
+     <transition state-id1="35" event-id="?end_punch_1" state-id2="36"/>
+     <transition state-id1="35" event-id="!emit_beat_0" state-id2="failure"/>
+     <transition state-id1="36" event-id="?commit" state-id2="37"/>
+     <transition state-id1="36" event-id="!emit_beat_0" state-id2="failure"/>
+     <transition state-id1="37" event-id="?abs_punch_1" state-id2="38"/>
+     <transition state-id1="37" event-id="!emit_beat_0" state-id2="failure"/>
+     <transition state-id1="38" event-id="?commit" state-id2="39"/>
+     <transition state-id1="38" event-id="!emit_beat_0" state-id2="failure"/>
+     <transition state-id1="39" event-id="other" state-id2="40"/>
+     <transition state-id1="39" event-id="!emit_beat_0" state-id2="failure"/>
+     <transition state-id1="40" event-id="other" state-id2="41"/>
+     <transition state-id1="37" event-id="!emit_beat_0" state-id2="failure"/>
+     <transition state-id1="41" event-id="other" state-id2="42"/>
+     <transition state-id1="41" event-id="!emit_beat_0" state-id2="failure"/>
+      
+     <!-- If after all this trials no beating took place, and later a caress happens,
+          it means that the beating behaviour has been successfully eliminated --> 
+     <transition state-id1="42" event-id="!emit_caress_0" state-id2="success"/>
+    </transitions>
+
+    
+  </simulation-purpose-verification>
+
+</experiment>

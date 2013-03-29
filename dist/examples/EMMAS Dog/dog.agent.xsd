@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="organism" type="organismType"/>
+  <xs:complexType name="drive-subsystemType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="drives">
+        <xs:annotation>
+          <xs:documentation><![CDATA[Hunger 
+      <drive>
+        <importance>0.0</importance>
+        <desires>
+          <stimulus id="0" />
+        </desires>
+      </drive>]]></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="pleasure-hintsType">
+    <xs:sequence>
+      <xs:element type="stimulusType" name="stimulus"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="stimuliType">
+    <xs:sequence>
+      <xs:element type="stimulusType" name="stimulus" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="stimulusType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="primary" use="optional"/>
+        <xs:attribute type="xs:string" name="utility" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="stimulation-subsystemType">
+    <xs:sequence>
+      <xs:element type="stimulation-parametersType" name="stimulation-parameters"/>
+      <xs:element type="conditioning-parametersType" name="conditioning-parameters"/>
+      <xs:element type="xs:string" name="stimulus-implication"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="antecedentType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="contingency" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="thresholdType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="stimulation-parametersType">
+    <xs:sequence>
+      <xs:element type="stimulation-hintsType" name="stimulation-hints"/>
+      <xs:element type="stimuliType" name="stimuli"/>
+      <xs:element type="max-delayType" name="max-delay"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="stimulation-hintsType">
+    <xs:sequence>
+      <xs:element type="pleasure-hintsType" name="pleasure-hints"/>
+      <xs:element type="pain-hintsType" name="pain-hints"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consequenceType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="max-latencyType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="responding-subsystemType">
+    <xs:sequence>
+      <xs:element type="actionsType" name="actions"/>
+      <xs:element type="xs:string" name="action-conflict"/>
+      <xs:element type="operantsType" name="operants"/>
+      <xs:element type="reflexesType" name="reflexes"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="pain-hintsType">
+    <xs:sequence>
+      <xs:element type="stimulusType" name="stimulus"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="max-strengthType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="reflexesType">
+    <xs:sequence>
+      <xs:element type="reflexType" name="reflex"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="strengthType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="reflex-parametersType">
+    <xs:sequence>
+      <xs:element type="max-elicitationType" name="max-elicitation"/>
+      <xs:element type="min-elicitationType" name="min-elicitation"/>
+      <xs:element type="max-strengthType" name="max-strength"/>
+      <xs:element type="min-strengthType" name="min-strength"/>
+      <xs:element type="max-durationType" name="max-duration"/>
+      <xs:element type="min-durationType" name="min-duration"/>
+      <xs:element type="max-latencyType" name="max-latency"/>
+      <xs:element type="min-latencyType" name="min-latency"/>
+      <xs:element type="max-thresholdType" name="max-threshold"/>
+      <xs:element type="min-thresholdType" name="min-threshold"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="durationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="min-elicitationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="depressionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="status"/>
+        <xs:attribute type="xs:string" name="intensity"/>
+        <xs:attribute type="xs:string" name="duration"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="max-thresholdType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="min-latencyType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="operantType">
+    <xs:sequence>
+      <xs:element type="antecedentsType" name="antecedents"/>
+      <xs:element type="actionType" name="action"/>
+      <xs:element type="consequenceType" name="consequence">
+        <xs:annotation>
+          <xs:documentation>push_lever  bark</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actionsType">
+    <xs:sequence>
+      <xs:element type="actionType" name="action" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="max-elicitationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="actionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+        <xs:attribute type="xs:string" name="name" use="optional"/>
+        <xs:attribute type="xs:string" name="base-level" use="optional"/>
+        <xs:attribute type="xs:string" name="operant" use="optional"/>
+        <xs:attribute type="xs:string" name="reflex" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="operantsType">
+    <xs:sequence>
+      <xs:element type="operantType" name="operant" maxOccurs="unbounded" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>bell  bark_sound</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="elicitationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="conditioning-parametersType">
+    <xs:sequence>
+      <xs:element type="cType" name="c"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="max-durationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="cType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="antecedent-stimulusType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="id"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="antecedentsType">
+    <xs:sequence>
+      <xs:element type="antecedentType" name="antecedent"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="min-thresholdType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="frustrationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="status"/>
+        <xs:attribute type="xs:string" name="intensity"/>
+        <xs:attribute type="xs:string" name="duration"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="reflexType">
+    <xs:sequence>
+      <xs:element type="reflex-parametersType" name="reflex-parameters"/>
+      <xs:element type="antecedent-stimulusType" name="antecedent-stimulus"/>
+      <xs:element type="actionType" name="action"/>
+      <xs:element type="thresholdType" name="threshold"/>
+      <xs:element type="elicitationType" name="elicitation"/>
+      <xs:element type="strengthType" name="strength"/>
+      <xs:element type="durationType" name="duration"/>
+      <xs:element type="latencyType" name="latency"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="min-durationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="organismType">
+    <xs:sequence>
+      <xs:element type="stimulation-subsystemType" name="stimulation-subsystem"/>
+      <xs:element type="responding-subsystemType" name="responding-subsystem"/>
+      <xs:element type="drive-subsystemType" name="drive-subsystem"/>
+      <xs:element type="emotion-subsystemType" name="emotion-subsystem"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="max-delayType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="emotion-subsystemType">
+    <xs:sequence>
+      <xs:element type="angerType" name="anger"/>
+      <xs:element type="depressionType" name="depression"/>
+      <xs:element type="frustrationType" name="frustration"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="min-strengthType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="angerType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="status"/>
+        <xs:attribute type="xs:string" name="intensity"/>
+        <xs:attribute type="xs:string" name="duration"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="latencyType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

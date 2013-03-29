@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<scenario name="EMMAS dog training" 
+	      description="A dog trainment environment.">
+
+  <agent component-id="organism.OrganismComponent" id="0" name="Dog">
+    <initializer file="dog.agent.xml"/>
+  </agent>	
+	
+  <emmas>
+
+    <action-transformers>
+      <!-- The dog is alone. -->
+    </action-transformers>
+    
+    <behaviors>
+    
+      <behavior>
+        <environment-response agent-id="0" action="salivate">
+          <nop/>
+        </environment-response>
+      </behavior>
+      
+      
+      <behavior>
+        <environment-response agent-id="0" action="bark">
+          <nop/>  
+        </environment-response>
+      </behavior>
+      
+      
+      <!-- Pushing a lever generates a bell sound -->
+      <behavior>
+        <environment-response agent-id="0" action="push_lever">
+          <stimulate stimulus="bell" agent-id="0" />
+        </environment-response>
+      </behavior>
+      
+      
+      <!-- Experiments that can be performed -->
+      <behavior>
+        <choice>
+          <sequential-composition><stimulate stimulus="bell" agent-id="0" /><stimulate stimulus="food" agent-id="0" /></sequential-composition>
+          <sequential-composition><stimulate stimulus="whistle" agent-id="0" /><stimulate stimulus="food" agent-id="0" /><stimulate stimulus="whistle" agent-id="0" /></sequential-composition>
+        </choice>
+      </behavior>
+            
+    </behaviors>
+  </emmas>
+
+</scenario>

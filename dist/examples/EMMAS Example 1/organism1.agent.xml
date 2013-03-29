@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<organism>
+    
+  <stimulation-subsystem>
+
+    <stimulation-parameters>
+      <stimulation-hints>
+        <pleasure-hints>
+          <stimulus id="0" />
+        </pleasure-hints>
+        <pain-hints>
+        </pain-hints>
+      </stimulation-hints>
+
+      <stimuli>
+        <stimulus id="0" name="Food" primary="true" utility="0.9" />
+        <stimulus id="1" name="Money" />
+        <stimulus id="2" name="Work place" />
+        <stimulus id="3" name="Home" />
+      </stimuli>
+
+      <max-delay value="10" />
+
+    </stimulation-parameters>
+
+    <conditioning-parameters>
+        <c value="0.5"/>
+    </conditioning-parameters>
+    
+    <stimulus-implication>
+            
+    </stimulus-implication>
+  </stimulation-subsystem>
+  
+  
+  <responding-subsystem>
+    
+    <actions>
+      <action id="0" name="Work" base-level="0.01" operant="true" reflex="false" />
+      <action id="1" name="Buy food" base-level="0.01" operant="true" reflex="false" />
+      <action id="2" name="Wakeup early" base-level="0.01" operant="true" reflex="true" />
+    </actions>
+    
+    <action-conflict />
+    
+    <operants>
+    
+      <!-- Wake up and go to work -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="0.9">
+            <stimulus id="3"/>
+          </antecedent>
+        </antecedents>
+        <action id="2"/>
+        <consequence id="2"/>
+      </operant>
+      
+      <!-- Work -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="2"/>
+          </antecedent>
+        </antecedents>
+        <action id="0"/>
+        <consequence id="1"/>
+      </operant>
+      
+      <!-- Buy food -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="1"/>
+          </antecedent>
+        </antecedents>
+        <action id="1"/>
+        <consequence id="0"/>
+      </operant>
+      
+    </operants>
+    
+    
+    <reflexes>
+      
+    </reflexes>
+
+  </responding-subsystem>
+  
+  <drive-subsystem>
+    <drives>
+      <drive>
+        <importance>0.0</importance>
+        <desires>
+          <stimulus id="0" />
+        </desires>
+      </drive>
+
+    </drives>
+  </drive-subsystem>
+
+  <emotion-subsystem>
+    <anger status="INACTIVE" intensity="0.0" duration="0" />
+    <depression status="INACTIVE" intensity="0.0" duration="0" />
+    <frustration status="INACTIVE" intensity="0.0" duration="0" />
+  </emotion-subsystem>
+
+</organism>
+
+

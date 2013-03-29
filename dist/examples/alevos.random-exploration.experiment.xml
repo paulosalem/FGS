@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<experiment name="Random Exploration test" description="A simple test for the random exploration simulation strategy." >
+
+  <!-- A random exploration  -->
+  <random-exploration runs="1" iterations-per-run="100"/>
+
+</experiment>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<organism>
+    
+  <stimulation-subsystem>
+
+    <stimulation-parameters>
+      <stimulation-hints>
+        <pleasure-hints>
+        </pleasure-hints>
+        <pain-hints>
+        </pain-hints>
+      </stimulation-hints>
+
+      <stimuli>
+        <stimulus id="0" name="prize" primary="true" utility="0.5" />
+        <stimulus id="1" name="disapproval" primary="true" utility="-0.2" />
+        <stimulus id="2" name="homework" primary="false" />
+        <stimulus id="3" name="provocation" primary="true" utility="-0.4" />
+        <stimulus id="4" name="information" primary="true" utility="0.8" />
+        <stimulus id="5" name="tv" primary="true" utility="0.6" />
+        <stimulus id="6" name="cry_sound" primary="true" utility="0.3" />
+        <stimulus id="7" name="neutral" primary="true" utility="0.0" />
+      </stimuli>
+      
+      <max-delay value="10" />
+
+    </stimulation-parameters>
+
+    <conditioning-parameters>
+        <c value="0.5"/>
+    </conditioning-parameters>
+    
+    <stimulus-implication/>
+    
+  </stimulation-subsystem>
+  
+  <responding-subsystem>
+    
+    <actions>
+      <action id="0" name="do_homework" base-level="0.0" operant="true" reflex="false" />
+      <action id="1" name="study" base-level="0.3" operant="true" reflex="false" />
+      <action id="2" name="annoy" base-level="0.0" operant="true" reflex="true" />
+      <action id="3" name="watch_tv" base-level="0.1" operant="true" reflex="false" />
+      <action id="4" name="cry" base-level="0.0" operant="true" reflex="false" />
+      <action id="5" name="idle" base-level="0.0" operant="true" reflex="false" />
+    </actions>
+
+    <action-conflict>
+      <conflict id1="1" id2="3"/>
+      <conflict id1="0" id2="3"/>
+      <conflict id1="1" id2="2"/>
+      <conflict id1="0" id2="2"/>
+    </action-conflict>
+
+    <operants>
+    
+      <!-- To idle is quite boring. -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0"/>
+        </antecedents>
+        <action id="5"/>
+        <consequence id="7"/>
+      </operant>
+     
+    
+      <!-- Doing the homework is rewarded. -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="2"/>
+          </antecedent>
+        </antecedents>
+        <action id="0"/>
+        <consequence id="0"/>
+      </operant>
+
+
+      <!-- Annoying other children makes them cry. -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0"/>
+        </antecedents>
+        <action id="2"/>
+        <consequence id="6"/>
+      </operant>
+      
+    </operants>
+    
+    <reflexes>
+      
+      <!-- A provocation elicits crying. --> 
+      <reflex>
+      
+        <reflex-parameters>
+          <max-elicitation value="1.0" />
+          <min-elicitation value="0.9" />
+          <max-strength value="1.0" />
+          <min-strength value="0.5" />
+          <max-duration value="10" />
+          <min-duration value="2" />
+          <max-latency value="10" />
+          <min-latency value="1" />
+          <max-threshold value="0.3" />
+          <min-threshold value="0.1" />
+        </reflex-parameters>
+        
+        <antecedent-stimulus id="3" />
+        <action id="4" />
+        <threshold value="0.3" />
+        <elicitation value="1.0" />
+        <strength value="1.0" />
+        <duration value="30" />
+        <latency value="1" />
+      </reflex>
+    </reflexes>
+
+  </responding-subsystem>
+
+  <drive-subsystem>
+    <drives/>
+  </drive-subsystem>
+
+  <emotion-subsystem>
+    <anger status="INACTIVE" intensity="0.0" duration="0" />
+    <depression status="INACTIVE" intensity="0.0" duration="0" />
+    <frustration status="INACTIVE" intensity="0.0" duration="0" />
+  </emotion-subsystem>
+
+</organism>

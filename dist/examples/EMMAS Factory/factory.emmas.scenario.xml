@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<scenario name="EMMAS Factory Example" 
+	      description="A factory where workers should maximize production.">
+
+
+  <!-- Managers -->
+  <agent component-id="organism.OrganismComponent" id="0" name="Manager 1">
+    <initializer file="manager1.agent.xml"/>
+  </agent>
+  
+  <agent component-id="organism.OrganismComponent" id="1" name="Manager 2">
+    <initializer file="manager2.agent.xml"/>
+  </agent>
+  
+  <!-- Workers -->
+  <agent component-id="organism.OrganismComponent" id="11" name="Worker 1">
+    <initializer file="worker2.agent.xml"/>
+  </agent>
+  
+  <agent component-id="organism.OrganismComponent" id="12" name="Worker 2">
+    <initializer file="worker2.agent.xml"/>
+  </agent>
+  
+    <agent component-id="organism.OrganismComponent" id="13" name="Worker 3">
+    <initializer file="worker1.agent.xml"/>
+  </agent> 
+  	
+   
+  <emmas>
+  
+    <action-transformers>
+      <!-- Initially, no connections. (They'll be built later, see the behaviors below.) -->
+    </action-transformers>
+    
+    <behaviors>
+          
+
+      <!-- When the product is finished by some agent (through the 'work3' action), 
+           everyone is rewarded.  -->
+      
+      <behavior>
+        <environment-response agent-id="11" action="work_3">
+          <parallel>
+            <stimulate stimulus="money" agent-id="11" />
+            <stimulate stimulus="money" agent-id="12" />
+            <stimulate stimulus="money" agent-id="13" />
+            <stimulate stimulus="money" agent-id="0" />
+            <stimulate stimulus="money" agent-id="1" />
+          </parallel>
+        </environment-response>
+      </behavior>
+      
+      <behavior>
+        <environment-response agent-id="12" action="work_3">
+          <parallel>
+            <stimulate stimulus="money" agent-id="11" />
+            <stimulate stimulus="money" agent-id="12" />
+            <stimulate stimulus="money" agent-id="13" />
+            <stimulate stimulus="money" agent-id="0" />
+            <stimulate stimulus="money" agent-id="1" />
+          </parallel>
+        </environment-response>
+      </behavior>
+      
+      <behavior>
+        <environment-response agent-id="13" action="work_3">
+          <parallel>
+            <stimulate stimulus="money" agent-id="11" />
+            <stimulate stimulus="money" agent-id="12" />
+            <stimulate stimulus="money" agent-id="13" />
+            <stimulate stimulus="money" agent-id="0" />
+            <stimulate stimulus="money" agent-id="1" />
+          </parallel>
+        </environment-response>
+      </behavior>
+      
+          
+      <behavior>
+      
+        <!-- There are several ways to setup the company. -->
+        
+        <choice>
+        
+          <sequential-composition>
+            <choice>
+              <create agent-id1="0" action="order_work" stimulus="work_product_0" agent-id2 = "13" />
+              <create agent-id1="1" action="order_work" stimulus="work_product_0" agent-id2 = "13" />
+            </choice>
+           
+            <create agent-id1="13" action="work_1" stimulus="work_product_1" agent-id2 = "12" />
+            <create agent-id1="12" action="work_2" stimulus="work_product_2" agent-id2 = "11" />
+            
+            <create agent-id1="13" action="chat_1" stimulus="conversation_1" agent-id2 = "12" />
+            <create agent-id1="12" action="chat_1" stimulus="conversation_1" agent-id2 = "13" />
+            
+            <create agent-id1="12" action="chat_1" stimulus="conversation_1" agent-id2 = "11" />
+            <create agent-id1="11" action="chat_1" stimulus="conversation_1" agent-id2 = "12" />
+            
+          </sequential-composition>
+        
+
+          <sequential-composition>
+            <choice>
+              <create agent-id1="0" action="order_work" stimulus="work_product_0" agent-id2 = "11" />
+              <create agent-id1="1" action="order_work" stimulus="work_product_0" agent-id2 = "11" />
+            </choice>
+          
+            <create agent-id1="11" action="work_1" stimulus="work_product_1" agent-id2 = "12" /> 
+            <create agent-id1="12" action="work_2" stimulus="work_product_2" agent-id2 = "13" />
+            
+            <create agent-id1="11" action="chat_1" stimulus="conversation_1" agent-id2 = "12" />
+            <create agent-id1="12" action="chat_1" stimulus="conversation_1" agent-id2 = "11" />
+            
+            <create agent-id1="12" action="chat_1" stimulus="conversation_1" agent-id2 = "13" />
+            <create agent-id1="13" action="chat_1" stimulus="conversation_1" agent-id2 = "12" />
+            
+          </sequential-composition>
+          
+          
+          <sequential-composition>
+
+            <choice>
+              <create agent-id1="0" action="order_work" stimulus="work_product_0" agent-id2 = "11" />
+              <create agent-id1="1" action="order_work" stimulus="work_product_0" agent-id2 = "11" />
+            </choice>
+           
+            <create agent-id1="11" action="work_1" stimulus="work_product_1" agent-id2 = "13" />
+            <create agent-id1="13" action="work_2" stimulus="work_product_2" agent-id2 = "12" />
+            
+            <create agent-id1="11" action="chat_1" stimulus="conversation_1" agent-id2 = "13" />
+            <create agent-id1="13" action="chat_1" stimulus="conversation_1" agent-id2 = "11" />
+            
+            <create agent-id1="13" action="chat_1" stimulus="conversation_1" agent-id2 = "12" />
+            <create agent-id1="12" action="chat_1" stimulus="conversation_1" agent-id2 = "13" />
+            
+          </sequential-composition>
+
+
+
+          <sequential-composition>
+            <choice>
+              <create agent-id1="0" action="order_work" stimulus="work_product_0" agent-id2 = "12" />
+              <create agent-id1="1" action="order_work" stimulus="work_product_0" agent-id2 = "12" />
+            </choice>
+           
+            <create agent-id1="12" action="work_1" stimulus="work_product_1" agent-id2 = "11" />
+            <create agent-id1="11" action="work_2" stimulus="work_product_2" agent-id2 = "13" />
+
+            <create agent-id1="12" action="chat_1" stimulus="conversation_1" agent-id2 = "11" />
+            <create agent-id1="11" action="chat_1" stimulus="conversation_1" agent-id2 = "12" />
+            
+            <create agent-id1="11" action="chat_1" stimulus="conversation_1" agent-id2 = "13" />
+            <create agent-id1="13" action="chat_1" stimulus="conversation_1" agent-id2 = "11" />
+          </sequential-composition>
+          
+          
+          <sequential-composition>
+            <choice>
+              <create agent-id1="0" action="order_work" stimulus="work_product_0" agent-id2 = "12" />
+              <create agent-id1="1" action="order_work" stimulus="work_product_0" agent-id2 = "12" />
+            </choice>
+           
+            <create agent-id1="12" action="work_1" stimulus="work_product_1" agent-id2 = "13" />
+            <create agent-id1="13" action="work_2" stimulus="work_product_2" agent-id2 = "11" />
+
+            <create agent-id1="12" action="chat_1" stimulus="conversation_1" agent-id2 = "13" />
+            <create agent-id1="13" action="chat_1" stimulus="conversation_1" agent-id2 = "12" />
+            
+            <create agent-id1="13" action="chat_1" stimulus="conversation_1" agent-id2 = "11" />
+            <create agent-id1="11" action="chat_1" stimulus="conversation_1" agent-id2 = "13" />
+            
+          </sequential-composition>
+
+
+          <sequential-composition>
+            <choice>
+              <create agent-id1="0" action="order_work" stimulus="work_product_0" agent-id2 = "13" />
+              <create agent-id1="1" action="order_work" stimulus="work_product_0" agent-id2 = "13" />
+            </choice>
+           
+            <create agent-id1="13" action="work_1" stimulus="work_product_1" agent-id2 = "11" />
+            <create agent-id1="11" action="work_2" stimulus="work_product_2" agent-id2 = "12" />
+
+            <create agent-id1="13" action="chat_1" stimulus="conversation_1" agent-id2 = "11" />
+            <create agent-id1="11" action="chat_1" stimulus="conversation_1" agent-id2 = "13" />
+            
+            <create agent-id1="11" action="chat_1" stimulus="conversation_1" agent-id2 = "12" />
+            <create agent-id1="12" action="chat_1" stimulus="conversation_1" agent-id2 = "11" />
+
+          </sequential-composition>          
+          
+        </choice>
+      </behavior>
+     
+    </behaviors>
+    
+  </emmas>
+</scenario>

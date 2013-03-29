@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<scenario name="EMMAS Online Social Network Example" 
+	      description="An online social network.">
+
+
+  <!-- Organisms -->
+  <agent component-id="organism.OrganismComponent" id="0" name="Philosopher 0">
+    <initializer file="philosopher1.agent.xml"/>
+  </agent>	
+	
+  <agent component-id="organism.OrganismComponent" id="1" name="Philosopher 1">
+    <initializer file="philosopher1.agent.xml"/>
+  </agent> 
+  
+  <agent component-id="organism.OrganismComponent" id="2" name="Philosopher 2">
+    <initializer file="philosopher1.agent.xml"/>
+  </agent> 
+
+  <agent component-id="organism.OrganismComponent" id="3" name="Philosopher 3">
+    <initializer file="philosopher2.agent.xml"/>
+  </agent> 
+
+  <agent component-id="organism.OrganismComponent" id="4" name="Philosopher 4">
+    <initializer file="philosopher1.agent.xml"/>
+  </agent>
+ 
+ 
+  <emmas>
+
+    <action-transformers>
+    
+      <!-- Message forwarding --> 
+      <action-transformer agent-id1="0" action="a_forward_ad_1" stimulus="s_ad_1" agent-id2="1"/>
+      <action-transformer agent-id1="0" action="a_forward_ad_1" stimulus="s_ad_1" agent-id2="2"/>
+      <action-transformer agent-id1="2" action="a_forward_ad_1" stimulus="s_ad_1" agent-id2="3"/>
+      
+      <!-- Agents listen to their own jokes -->
+      <action-transformer agent-id1="0" action="a_verbal_joke" stimulus="s_verbal_joke" agent-id2="0"/>
+      <action-transformer agent-id1="1" action="a_verbal_joke" stimulus="s_verbal_joke" agent-id2="1"/>
+      <action-transformer agent-id1="2" action="a_verbal_joke" stimulus="s_verbal_joke" agent-id2="2"/>
+      <action-transformer agent-id1="3" action="a_verbal_joke" stimulus="s_verbal_joke" agent-id2="3"/>
+      
+      <!-- Agent 4 listen to all jokes -->
+      <action-transformer agent-id1="0" action="a_verbal_joke" stimulus="s_verbal_joke" agent-id2="4"/>
+      <action-transformer agent-id1="1" action="a_verbal_joke" stimulus="s_verbal_joke" agent-id2="4"/>
+      <action-transformer agent-id1="2" action="a_verbal_joke" stimulus="s_verbal_joke" agent-id2="4"/>
+      <action-transformer agent-id1="3" action="a_verbal_joke" stimulus="s_verbal_joke" agent-id2="4"/>
+      
+
+      <!-- Some agents exchange philosophy -->
+      <action-transformer agent-id1="0" action="a_verbal_philosophy" stimulus="s_verbal_philosophy" agent-id2="1"/>
+      <action-transformer agent-id1="1" action="a_verbal_philosophy" stimulus="s_verbal_philosophy" agent-id2="0"/>
+      
+      <action-transformer agent-id1="0" action="a_verbal_philosophy" stimulus="s_verbal_philosophy" agent-id2="2"/>
+      <action-transformer agent-id1="2" action="a_verbal_philosophy" stimulus="s_verbal_philosophy" agent-id2="0"/>
+      
+      <action-transformer agent-id1="2" action="a_verbal_philosophy" stimulus="s_verbal_philosophy" agent-id2="3"/>
+      <action-transformer agent-id1="3" action="a_verbal_philosophy" stimulus="s_verbal_philosophy" agent-id2="2"/>
+
+      <!-- Agents get what they buy -->
+      <action-transformer agent-id1="0" action="a_buy_ad_1" stimulus="books" agent-id2="0"/>
+      <action-transformer agent-id1="1" action="a_buy_ad_1" stimulus="books" agent-id2="1"/>
+      <action-transformer agent-id1="2" action="a_buy_ad_1" stimulus="books" agent-id2="2"/>
+      <action-transformer agent-id1="3" action="a_buy_ad_1" stimulus="books" agent-id2="3"/>
+      <action-transformer agent-id1="4" action="a_buy_ad_1" stimulus="books" agent-id2="4"/>
+
+    </action-transformers>
+    
+    
+    
+    <behaviors>
+    
+    
+      <!-- The advertisement engine can choose among agents -->
+      <behavior>
+        <choice> 
+          <begin-stimulation stimulus="s_ad_1" agent-id="0" />
+          <begin-stimulation stimulus="s_ad_1" agent-id="1" />
+          <begin-stimulation stimulus="s_ad_1" agent-id="2" />
+          <begin-stimulation stimulus="s_ad_1" agent-id="3" />
+          <begin-stimulation stimulus="s_ad_1" agent-id="4" />
+        </choice>
+      </behavior>
+    
+    
+      <!-- 
+         Message forwarding is rewarded with virtual points. 
+      --> 
+      
+      <behavior>
+        <environment-response agent-id="0" action="a_forward_ad_1">
+          <stimulate stimulus="points" agent-id="0" />
+        </environment-response>
+      </behavior>
+      
+      <behavior>
+        <environment-response agent-id="1" action="a_forward_ad_1">
+          <stimulate stimulus="points" agent-id="1" />
+        </environment-response>
+      </behavior>
+      
+      <behavior>
+        <environment-response agent-id="2" action="a_forward_ad_1">
+          <stimulate stimulus="points" agent-id="2" />
+        </environment-response>
+      </behavior>
+
+      <behavior>
+        <environment-response agent-id="3" action="a_forward_ad_1">
+          <stimulate stimulus="points" agent-id="3" />
+        </environment-response>
+      </behavior>
+      
+      <behavior>
+        <environment-response agent-id="4" action="a_forward_ad_1">
+          <stimulate stimulus="points" agent-id="4" />
+        </environment-response>
+      </behavior>
+      
+    </behaviors>
+
+  </emmas>
+
+
+</scenario>

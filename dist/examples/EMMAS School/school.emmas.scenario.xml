@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<scenario name="EMMAS School children example" 
+	      description="A class of misbehaving children.">
+
+
+  <agent component-id="organism.OrganismComponent" id="0" name="Organism 0">
+    <initializer file="teacher.agent.xml"/>
+  </agent>
+
+  <agent component-id="organism.OrganismComponent" id="1" name="Organism 1">
+    <initializer file="child.agent.xml"/>
+  </agent>
+
+  <agent component-id="organism.OrganismComponent" id="2" name="Organism 2">
+    <initializer file="child.agent.xml"/>
+  </agent>
+
+  <agent component-id="organism.OrganismComponent" id="3" name="Organism 3">
+    <initializer file="child.agent.xml"/>
+  </agent>
+
+
+  <emmas>
+  
+
+    <action-transformers>
+    
+      <!-- Teacher can punish any student.  -->
+      <action-transformer agent-id1="0" action="punish_1" stimulus="disapproval" agent-id2="1"/>
+      <action-transformer agent-id1="0" action="punish_2" stimulus="disapproval" agent-id2="2"/>
+      <action-transformer agent-id1="0" action="punish_3" stimulus="disapproval" agent-id2="3"/>
+
+      
+      <!-- Teacher can reward any student (e.g., for doing their homework).  -->
+      <action-transformer agent-id1="0" action="reward_1" stimulus="prize" agent-id2="1"/>
+      <action-transformer agent-id1="0" action="reward_2" stimulus="prize" agent-id2="2"/>
+      <action-transformer agent-id1="0" action="reward_3" stimulus="prize" agent-id2="3"/>
+
+      
+      <!-- Teachers can assign homework. -->
+      <action-transformer agent-id1="0" action="assign_homework" stimulus="homework" agent-id2="1"/>
+      <action-transformer agent-id1="0" action="assign_homework" stimulus="homework" agent-id2="2"/>
+      <action-transformer agent-id1="0" action="assign_homework" stimulus="homework" agent-id2="3"/>
+
+      
+      <!-- Students can do and deliver their homework. -->
+      <action-transformer agent-id1="1" action="do_homework" stimulus="homework_1" agent-id2="0"/>
+      <action-transformer agent-id1="2" action="dd_homework" stimulus="homework_2" agent-id2="0"/>
+      <action-transformer agent-id1="3" action="do_homework" stimulus="homework_3" agent-id2="0"/>
+
+            
+      <!-- Students can annoy each other, according to who they have access to. -->
+      <action-transformer agent-id1="1" action="annoy" stimulus="provocation" agent-id2="2"/>
+      <action-transformer agent-id1="2" action="annoy" stimulus="provocation" agent-id2="1"/>
+      <action-transformer agent-id1="1" action="annoy" stimulus="provocation" agent-id2="3"/>
+      <action-transformer agent-id1="3" action="annoy" stimulus="provocation" agent-id2="1"/>
+      <action-transformer agent-id1="2" action="annoy" stimulus="provocation" agent-id2="3"/>
+      <action-transformer agent-id1="3" action="annoy" stimulus="provocation" agent-id2="2"/>
+
+      
+      <!-- Teacher can see students annoying each other. -->
+      <action-transformer agent-id1="1" action="annoy" stimulus="see_annoying_1" agent-id2="0"/>
+      <action-transformer agent-id1="2" action="annoy" stimulus="see_annoying_2" agent-id2="0"/>
+      <action-transformer agent-id1="3" action="annoy" stimulus="see_annoying_3" agent-id2="0"/>
+
+            
+      <!-- When an agent cries, everybody listens. -->
+      <action-transformer agent-id1="1" action="cry" stimulus="cry_sound" agent-id2="0"/>
+      <action-transformer agent-id1="1" action="cry" stimulus="cry_sound" agent-id2="2"/>
+      <action-transformer agent-id1="1" action="cry" stimulus="cry_sound" agent-id2="3"/>
+      
+      <action-transformer agent-id1="2" action="cry" stimulus="cry_sound" agent-id2="0"/>
+      <action-transformer agent-id1="2" action="cry" stimulus="cry_sound" agent-id2="1"/>
+      <action-transformer agent-id1="2" action="cry" stimulus="cry_sound" agent-id2="3"/>
+      
+      <action-transformer agent-id1="3" action="cry" stimulus="cry_sound" agent-id2="0"/>
+      <action-transformer agent-id1="3" action="cry" stimulus="cry_sound" agent-id2="1"/>
+      <action-transformer agent-id1="3" action="cry" stimulus="cry_sound" agent-id2="2"/>
+
+    </action-transformers>
+    
+    
+    <behaviors>
+    
+      <!-- Students can study. -->
+      <behavior>
+        <environment-response agent-id="1" action="study">
+          <stimulate stimulus="information" agent-id="1" />
+        </environment-response>
+      </behavior>
+      
+      <behavior>
+        <environment-response agent-id="2" action="study">
+          <stimulate stimulus="information" agent-id="2" />
+        </environment-response>
+      </behavior>
+      
+      
+      <behavior>
+        <environment-response agent-id="3" action="study">
+          <stimulate stimulus="information" agent-id="3" />
+        </environment-response>
+      </behavior>
+      
+      
+      <!-- Distractions are always be available to bother the students. -->
+      <behavior>
+        <environment-response agent-id="1" action="watch_tv">
+          <stimulate stimulus="tv" agent-id="1" />
+        </environment-response>
+      </behavior>
+      
+      <behavior>
+        <environment-response agent-id="2" action="watch_tv">
+          <stimulate stimulus="tv" agent-id="2" />
+        </environment-response>
+      </behavior>
+      
+      <behavior>
+        <environment-response agent-id="3" action="watch_tv">
+          <stimulate stimulus="tv" agent-id="3" />
+        </environment-response>
+      </behavior>
+      
+    </behaviors>
+  </emmas>
+
+</scenario>

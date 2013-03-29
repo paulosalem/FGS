@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<experiment name="School children verification" 
+            description="Checks whether children do their homework." >
+
+  <simulation-purpose-verification relation="feasibility">
+   
+    <states>
+     <state id="initial"/>
+     <state id="1"/>
+    </states>
+
+    <events>
+      <emmas-event id="!emit_assign_homework" type="output" name="emit" action="assign_homework" agent-id="0"/>
+    
+      <emmas-event id="!emit_annoy_ag3" type="output" name="emit" action="annoy" agent-id="3"/>
+     
+      <emmas-event id="!emit_do_homework_ag1" type="output" name="emit" action="do_homework" agent-id="1"/>
+      <emmas-event id="!emit_do_homework_ag2" type="output" name="emit" action="do_homework" agent-id="2"/>
+      <emmas-event id="!emit_do_homework_ag3" type="output" name="emit" action="do_homework" agent-id="3"/>
+    </events>
+
+
+    <transitions>
+    
+      <!-- Anything can happen for some time. -->
+      <transition state-id1="initial" event-id="other" state-id2="initial"/>
+      <transition state-id1="initial" event-id="!emit_assign_homework" state-id2="1"/>
+      
+      <transition state-id1="1" event-id="other" state-id2="1"/>
+      
+      <!-- We wish that at least some of the children will eventually do homework. -->
+      <transition state-id1="1" event-id="!emit_do_homework_ag1" state-id2="success"/>
+      <transition state-id1="1" event-id="!emit_do_homework_ag2" state-id2="success"/>
+      <transition state-id1="1" event-id="!emit_do_homework_ag3" state-id2="success"/>
+      
+      
+    </transitions>
+    
+  </simulation-purpose-verification>
+
+</experiment>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<organism>
+    
+  <stimulation-subsystem>
+
+    <stimulation-parameters>
+      <stimulation-hints>
+        <pleasure-hints>
+        </pleasure-hints>
+        <pain-hints>
+        </pain-hints>
+      </stimulation-hints>
+
+      <stimuli>
+        
+        <stimulus id="0" name="money" primary="true" utility="0.5" />
+        
+        <stimulus id="1" name="work_product_0" primary="false" />
+        <stimulus id="2" name="work_product_1" primary="false" />
+        <stimulus id="3" name="work_product_2" primary="false" />
+        <stimulus id="4" name="work_product_3" primary="false" />
+
+        <stimulus id="5" name="conversation_1" primary="true" utility="0.8" />
+        <stimulus id="6" name="conversation_2" primary="true" utility="0.8" />
+        
+        <stimulus id="20" name="food" primary="true" utility="0.5"/>
+        
+      </stimuli>
+
+      <max-delay value="10" />
+
+    </stimulation-parameters>
+
+    <conditioning-parameters>
+        <c value="0.5"/>
+    </conditioning-parameters>
+    
+    <stimulus-implication>
+    
+        
+    </stimulus-implication>
+  </stimulation-subsystem>
+  
+
+
+  <responding-subsystem>
+    
+    <actions>
+
+      <action id="0" name="work_1" base-level="0.0" operant="true" reflex="true" />
+      <action id="1" name="work_2" base-level="0.0" operant="true" reflex="true" />
+      <action id="2" name="work_3" base-level="0.0" operant="true" reflex="true" />
+      
+      <action id="3" name="chat_1" base-level="0.3" operant="true" reflex="true" />
+      <action id="4" name="chat_2" base-level="0.3" operant="true" reflex="true" />
+      <action id="5" name="chat_3" base-level="0.3" operant="true" reflex="true" />
+    
+    </actions>
+
+    
+    <action-conflict>
+      
+      <!-- Either one works or one chats -->
+      <conflict id1="0" id2="3"/>
+      <conflict id1="0" id2="4"/>
+      <conflict id1="0" id2="5"/>
+      
+      <conflict id1="1" id2="3"/>
+      <conflict id1="1" id2="4"/>
+      <conflict id1="1" id2="5"/>
+      
+      <conflict id1="2" id2="3"/>
+      <conflict id1="2" id2="4"/>
+      <conflict id1="2" id2="5"/>
+      
+    </action-conflict>
+
+    <operants>
+    
+      <!-- 
+        Each work product requires a different action, which is rewarded with money 
+      -->
+      
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="1"/>
+          </antecedent>
+        </antecedents>
+        <action id="0"/>
+        <consequence id="0"/>
+      </operant>
+
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="2"/>
+          </antecedent>
+        </antecedents>
+        <action id="1"/>
+        <consequence id="0"/>
+      </operant>
+      
+      
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="3"/>
+          </antecedent>
+        </antecedents>
+        <action id="2"/>
+        <consequence id="0"/>
+      </operant>
+
+
+
+
+     <!-- When dealing with a particular kind of work, this agent knows that
+         a good conversation is possible. -->
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="2"/>
+          </antecedent>
+        </antecedents>
+        <action id="3"/>      <!-- chat_1 -->
+        <consequence id="5"/> <!-- conversation_1 -->
+      </operant>
+      
+    </operants>
+    
+    
+    
+    <reflexes/>
+
+  </responding-subsystem>
+  
+
+  <drive-subsystem>
+    <drives>
+    
+      <!-- Money is periodically needed -->
+      <drive>
+        <importance value="0.0"/>
+        <max-importance value="1.0"/>
+        <min-importance value="-1.0"/>
+        <desires>
+          <stimulus id="0" />
+        </desires>
+      </drive>
+
+    </drives>
+  </drive-subsystem>
+
+
+  <emotion-subsystem>
+    <anger status="INACTIVE" intensity="0.0" duration="0" />
+    <depression status="INACTIVE" intensity="0.0" duration="0" />
+    <frustration status="INACTIVE" intensity="0.0" duration="0" />
+  </emotion-subsystem>
+
+</organism>
+
+

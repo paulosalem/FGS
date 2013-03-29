@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<scenario name="EMMAS worker" 
+	      description="En example of operant chaining.">
+
+
+  <agent component-id="organism.OrganismComponent" id="0" name="Worker">
+    <initializer file="worker.agent.xml"/>
+  </agent>	
+	
+  <emmas>
+  
+    <action-transformers>
+      <!-- The worker is alone. -->
+    </action-transformers>
+    
+    <behaviors>
+    
+      <!-- The agent begin in his home -->
+      <behavior>
+        <stimulate stimulus="home" agent-id="0" />
+      </behavior>
+    
+      <!-- Reinforce the first operant in the chain -->
+      <behavior>
+        <environment-response agent-id="0" action="wakeup_early">
+          <stimulate stimulus="work_place" agent-id="0" />
+        </environment-response>
+      </behavior>
+    
+    
+      <!-- Reinforce the second operant in the chain -->
+      <behavior>
+        <environment-response agent-id="0" action="work">
+          <stimulate stimulus="money" agent-id="0" />
+        </environment-response>      
+      </behavior>
+
+
+      <!-- Reinforce the third operant in the chain -->
+      <behavior>
+        <environment-response agent-id="0" action="buy_food">
+          <stimulate stimulus="food" agent-id="0" />
+        </environment-response>            
+      </behavior>
+
+    
+    </behaviors>
+    
+  </emmas>
+
+</scenario>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<experiment name="Operant chaining mainenance" description="An operant chaining mantenaince program for workers." >
+
+  <simulation-purpose-verification relation="feasibility">
+   
+    <states>
+      <state id="initial"/>
+      <state id="1"/>
+      <state id="2"/>
+      <state id="3"/>
+    </states>
+    
+    <events>
+      <emmas-event id="?beg_home" type="input" name="beginning" stimulus="home" agent-id="0"/>
+    
+      <emmas-event id="!emit_wakeup_early" type="output" name="emit" action="wakeup_early" agent-id="0"/>
+      <emmas-event id="!emit_work" type="output" name="emit" action="work" agent-id="0"/>
+      <emmas-event id="!emit_buy_food" type="output" name="emit" action="buy_food" agent-id="0"/>
+    </events>    
+    
+    <transitions>
+       <!-- Walk the agent through the chain -->
+    
+       <transition state-id1="initial" event-id="other" state-id2="initial"/>
+       <transition state-id1="initial" event-id="?beg_home" state-id2="1"/>
+    
+       <transition state-id1="1" event-id="other" state-id2="1"/>
+       <transition state-id1="1" event-id="!emit_wakeup_early" state-id2="2"/>
+       
+       <transition state-id1="2" event-id="other" state-id2="2"/>
+       <transition state-id1="2" event-id="!emit_work" state-id2="3"/>
+       
+       <transition state-id1="3" event-id="other" state-id2="3"/>
+       <transition state-id1="3" event-id="!emit_buy_food" state-id2="success"/>
+    </transitions>
+
+  </simulation-purpose-verification>
+
+</experiment>

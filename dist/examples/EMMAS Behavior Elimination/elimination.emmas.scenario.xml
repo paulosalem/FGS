@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<scenario name="EMMAS violent child" 
+	      description="An example of how to change the behaviour of a problem child.">
+
+
+  <!-- Organisms -->
+  <agent component-id="organism.OrganismComponent" id="0" name="Child">
+    <initializer file="child.agent.xml"/>
+  </agent>	
+  
+  <agent component-id="organism.OrganismComponent" id="1" name="Dog">
+    <initializer file="dog.agent.xml"/>
+  </agent> 
+
+  <!-- A property that inspects whether the child likes candy -->  
+  <property component-id = "organism.StimulusUtilityProperty" id="0" name="LikesCandy">
+    <primitive-parameter name="TargetStimulus" value="candy" />
+    <primitive-parameter name="TargetValue" value="0.1" />
+
+    <agent-target id="0" />
+  </property>
+  
+	
+
+  <emmas>
+  
+    <action-transformers>
+      <action-transformer agent-id1="0" action="beat" stimulus="punch" agent-id2="1"/>
+      <action-transformer agent-id1="0" action="caress" stimulus="caress" agent-id2="1"/>
+      <action-transformer agent-id1="1" action="scream" stimulus="scream_sound" agent-id2="0"/>
+    </action-transformers>
+    
+    <behaviors>
+
+      <!-- Candy dispenser (we can give as much candy as we like to the child). -->    
+      <behavior>
+        <unbounded-sequence><stimulate stimulus="candy" agent-id="0" /></unbounded-sequence>
+      </behavior>
+    
+      <!-- A neutral background can always be provided. -->
+      <behavior>
+        <unbounded-sequence><stimulate stimulus="neutral" agent-id="0" /></unbounded-sequence>
+      </behavior>
+
+    </behaviors>
+    
+  </emmas>
+
+</scenario>

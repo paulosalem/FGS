@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<organism>
+    
+  <stimulation-subsystem>
+
+    <stimulation-parameters>
+      <stimulation-hints>
+        <pleasure-hints>
+        </pleasure-hints>
+        <pain-hints>
+        </pain-hints>
+      </stimulation-hints>
+
+      <stimuli>
+        <stimulus id="0" name="money" primary="true" utility="0.5" />
+      </stimuli>
+
+      <max-delay value="10" />
+
+    </stimulation-parameters>
+
+    <conditioning-parameters>
+        <c value="0.5"/>
+    </conditioning-parameters>
+    
+    <stimulus-implication/>
+    
+  </stimulation-subsystem>
+  
+  <responding-subsystem>
+    
+    <actions>
+      <action id="0" name="order_work" base-level="0.0" operant="true" reflex="true" />
+    </actions>
+
+    
+    <action-conflict>
+      
+    </action-conflict>
+
+    <operants>
+      
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0"/>
+        </antecedents>
+        <action id="0"/>
+        <consequence id="0"/>
+      </operant>
+      
+    </operants>
+    
+    <reflexes/>
+    
+  </responding-subsystem>
+
+  <drive-subsystem>
+    <drives>
+    
+      <!-- Money is periodically needed -->
+      <drive>
+        <importance value="0.0"/>
+        <max-importance value="1.0"/>
+        <min-importance value="-1.0"/>
+        <desires>
+          <stimulus id="0" />
+        </desires>
+      </drive>
+
+    </drives>
+  </drive-subsystem>
+
+
+  <emotion-subsystem>
+    <anger status="INACTIVE" intensity="0.0" duration="0" />
+    <depression status="ACTIVE" intensity="1.0" duration="20" /> <!-- Depressed -->
+    <frustration status="INACTIVE" intensity="0.0" duration="0" />
+  </emotion-subsystem>
+
+</organism>

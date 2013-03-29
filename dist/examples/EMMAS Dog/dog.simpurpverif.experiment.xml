@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<experiment name="Dog training program" description="A training program for dogs." >
+
+  <simulation-purpose-verification relation="feasibility">
+
+    <states>
+     <state id="initial"/>     
+     <state id="1"/>
+     <state id="2"/>
+     <state id="3"/>
+     <state id="4"/>
+     <state id="5"/>
+     <state id="6"/>
+     <state id="7"/>
+     <state id="8"/>
+     <state id="9"/>
+     <state id="10"/>
+     <state id="11"/>
+     <state id="12"/>
+    </states>
+    
+    <events>
+      <emmas-event id="!emit_salivate" type="output" name="emit" action="salivate" agent-id="0"/>
+      <emmas-event id="!stop_salivate" type="output" name="stop" action="salivate" agent-id="0"/>
+      <emmas-event id="!emit_push_lever" type="output" name="emit" action="push_lever" agent-id="0"/>
+      <emmas-event id="?beg_food" type="input" name="beginning" stimulus="food" agent-id="0"/>
+      <emmas-event id="?sta_food" type="input" name="stable" stimulus="food" agent-id="0"/>
+      
+      <emmas-event id="?beg_whistle" type="input" name="beginning" stimulus="whistle" agent-id="0"/>
+      <emmas-event id="?sta_whistle" type="input" name="stable" stimulus="whistle" agent-id="0"/>
+      
+      <emmas-event id="?beg_bell" type="input" name="beginning" stimulus="bell" agent-id="0"/>
+      <emmas-event id="?sta_bell" type="input" name="stable" stimulus="bell" agent-id="0"/>
+      <emmas-event id="?end_bell" type="input" name="ending" stimulus="bell" agent-id="0"/>
+      <emmas-event id="?abs_bell" type="input" name="absent" stimulus="bell" agent-id="0"/>
+    </events>
+        
+    
+    <!-- Two ways of training the dog, one of them must work. -->
+    <transitions>
+      
+      <!-- Try to condition food upon whistle and check whether it worked. -->
+      <transition state-id1="initial" event-id="?beg_whistle" state-id2="1"/>
+      <transition state-id1="1" event-id="other" state-id2="1"/>
+      <transition state-id1="1" event-id="?sta_whistle" state-id2="3"/>
+      <transition state-id1="3" event-id="other" state-id2="3"/>
+      <transition state-id1="3" event-id="?beg_food" state-id2="4"/>
+      <transition state-id1="4" event-id="other" state-id2="4"/>
+      <transition state-id1="4" event-id="?sta_food" state-id2="4"/>
+      <transition state-id1="4" event-id="!emit_salivate" state-id2="4"/>
+      <transition state-id1="4" event-id="?beg_whistle" state-id2="failure"/>
+      <transition state-id1="4" event-id="!stop_salivate" state-id2="5"/> <!-- make sure it is done -->
+      <transition state-id1="5" event-id="other" state-id2="5"/>
+      <transition state-id1="5" event-id="?beg_whistle" state-id2="6"/>
+      <transition state-id1="6" event-id="other" state-id2="6"/>
+      <transition state-id1="6" event-id="!emit_salivate" state-id2="success"/> <!-- the whistle alone managed to trigger salivation -->
+      
+      
+      <!-- Condition food upon bell and check whether the dog knows how to sound the bell. -->
+      <transition state-id1="initial" event-id="?beg_bell" state-id2="10"/>
+      <transition state-id1="10" event-id="?sta_bell" state-id2="10"/>
+      <transition state-id1="10" event-id="?end_bell" state-id2="10"/>
+      <transition state-id1="10" event-id="?abs_bell" state-id2="10"/>
+      <transition state-id1="10" event-id="other" state-id2="10"/>
+      <transition state-id1="10" event-id="?beg_whistle" state-id2="failure"/>
+      <transition state-id1="10" event-id="?beg_food" state-id2="12"/>
+      <transition state-id1="12" event-id="other" state-id2="12"/>
+      <transition state-id1="12" event-id="!emit_push_lever" state-id2="success"/>
+       
+      
+    </transitions>
+    
+  </simulation-purpose-verification>
+
+</experiment>

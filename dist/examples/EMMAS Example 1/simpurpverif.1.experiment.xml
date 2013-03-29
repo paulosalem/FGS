@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<experiment name="Standard Simulation" description="Runs a standard simulation." >
+
+  <!-- Verification of simulation purposes  -->
+  <simulation-purpose-verification name="A simulation purpose verification">
+  
+    <!-- TODO: description of the simulation purpose -->
+  
+  </simulation-purpose-verification>
+
+</experiment>

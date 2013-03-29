@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<experiment name="Simulation Purpose test" description="A simple test for the simulation purpose verification strategy." >
+
+  <!-- A simulation purpose verification  -->
+  <simulation-purpose-verification relation="feasibility">
+   <!--  TODO -->
+   
+    <states>
+     <state id="initial">
+       <!-- 
+       <literal type="negative" proposition="P"/>
+       <literal type="positive" proposition="Q"/>
+       -->    
+     </state>
+     
+     <state id="1"/>
+     <state id="2"/>
+     <state id="3"/>
+     <state id="4"/>
+     <state id="5"/>
+     <state id="6"/>
+    </states>
+    
+    <events>
+     <emmas-event id="?beg_wine_0" type="input" name="beginning" stimulus="wine" agent-id="0"/>
+     <emmas-event id="!emit_joke_0" type="output" name="emit" action="a_verbal_joke" agent-id="0"/>
+     <emmas-event id="!emit_philo_0" type="output" name="emit" action="a_verbal_philosophy" agent-id="0"/>
+     <emmas-event id="!emit_philo_2" type="output" name="emit" action="a_verbal_philosophy" agent-id="2"/>
+    </events>
+    
+    <transitions>
+     <transition state-id1="initial" event-id="?beg_wine_0" state-id2="1"/>
+     <transition state-id1="1" event-id="other" state-id2="6"/>
+     <transition state-id1="6" event-id="other" state-id2="6"/>
+     <transition state-id1="6" event-id="!emit_joke_0" state-id2="success"/>
+     <!-- 
+     <transition state-id1="1" event-id="!emit_philo_2" state-id2="failure"/>
+     <transition state-id1="1" event-id="!emit_philo_0" state-id2="2"/>
+     <transition state-id1="2" event-id="other" state-id2="2"/>
+     <transition state-id1="2" event-id="!emit_joke_0" state-id2="success"/>
+     -->
+    </transitions>
+    
+  </simulation-purpose-verification>
+
+</experiment>

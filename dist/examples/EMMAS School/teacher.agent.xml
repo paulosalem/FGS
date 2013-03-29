@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<organism>
+    
+  <stimulation-subsystem>
+
+    <stimulation-parameters>
+      <stimulation-hints>
+        <pleasure-hints>
+        </pleasure-hints>
+        <pain-hints>
+        </pain-hints>
+      </stimulation-hints>
+
+      <stimuli>
+        
+        <stimulus id="0" name="money" primary="true" utility="0.7" />
+        
+        <stimulus id="1" name="homework_1" primary="false" />
+        <stimulus id="2" name="homework_2" primary="false" />
+        <stimulus id="3" name="homework_3" primary="false" />
+        
+        <stimulus id="4" name="see_annoying_1" primary="false" />
+        <stimulus id="5" name="see_annoying_2" primary="false" />
+        <stimulus id="6" name="see_annoying_3" primary="false" />
+        
+      </stimuli>
+
+      <max-delay value="10" />
+
+    </stimulation-parameters>
+
+    <conditioning-parameters>
+        <c value="0.5"/>
+    </conditioning-parameters>
+    
+    <stimulus-implication/>
+    
+  </stimulation-subsystem>
+  
+  <responding-subsystem>
+    
+    <actions>
+      <action id="0" name="assign_homework" base-level="0.6" operant="true" reflex="false" />
+      
+      <action id="1" name="reward_1" base-level="0.0" operant="true" reflex="true" />
+      <action id="2" name="reward_2" base-level="0.0" operant="true" reflex="true" />
+      <action id="3" name="reward_3" base-level="0.0" operant="true" reflex="true" />
+      
+      <action id="4" name="punish_1" base-level="0.0" operant="true" reflex="true" />
+      <action id="5" name="punish_2" base-level="0.0" operant="true" reflex="true" />
+      <action id="6" name="punish_3" base-level="0.0" operant="true" reflex="true" />
+    </actions>
+    
+    <action-conflict/>
+
+    <operants>
+    
+      <!-- The teacher has learned she will be paid when she performs her job properly. -->
+
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0"/>
+        </antecedents>
+        <action id="0"/>
+        <consequence id="0"/>
+      </operant>
+      
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="1"/>
+          </antecedent>
+        </antecedents>
+        <action id="1"/>
+        <consequence id="0"/>
+      </operant>
+
+
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="2"/>
+          </antecedent>
+        </antecedents>
+        <action id="2"/>
+        <consequence id="0"/>
+      </operant>
+      
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="3"/>
+          </antecedent>
+        </antecedents>
+        <action id="3"/>
+        <consequence id="0"/>
+      </operant>
+
+
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="4"/>
+          </antecedent>
+        </antecedents>
+        <action id="4"/>
+        <consequence id="0"/>
+      </operant>
+
+
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="5"/>
+          </antecedent>
+        </antecedents>
+        <action id="5"/>
+        <consequence id="0"/>
+      </operant>
+
+
+      <operant>
+        <antecedents>
+          <antecedent contingency="1.0">
+            <stimulus id="6"/>
+          </antecedent>
+        </antecedents>
+        <action id="6"/>
+        <consequence id="0"/>
+      </operant>
+    </operants>
+    
+    <reflexes/>
+  </responding-subsystem>
+
+  <drive-subsystem>
+    <drives>
+    
+      <!-- Money is periodically needed -->
+      <drive>
+        <importance value="0.0"/>
+        <max-importance value="1.0"/>
+        <min-importance value="-1.0"/>
+        <desires>
+          <stimulus id="0" />
+        </desires>
+      </drive>
+
+    </drives>
+  </drive-subsystem>
+
+  <emotion-subsystem>
+    <anger status="INACTIVE" intensity="0.0" duration="0" />
+    <depression status="INACTIVE" intensity="0.0" duration="0" />
+    <frustration status="INACTIVE" intensity="0.0" duration="0" />
+  </emotion-subsystem>
+
+</organism>

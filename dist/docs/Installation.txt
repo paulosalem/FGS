@@ -1,0 +1,51 @@
+FGS - Formally Guided Simulator
+Installation Instructions
+===============================================================================
+
+
+1. System Requirements
+-------------------------------------------------------------------------------
+
+  FGS is developed entirely in Java SE 6, and therefore depends only on the 
+  presence of an appropriate JRE. It can be obtained, for example, here:
+  
+     http://www.oracle.com/technetwork/java/javase/downloads/index.html
+     
+
+
+2. Setup Components Repository and Libraries Folder
+-------------------------------------------------------------------------------
+
+  FGS expects two special folders to be defined in the user's machine,
+  namely:
+    
+      - The Components Repository: Where simulation model components can be
+        dropped for later use in simulations. By default, it is set to
+        <user's home folder>/simulation-components/
+        
+      - The Libraries Folder: Where any libraries required by simulation
+        model components can be dropped. By default, is set to
+        <user's home folder>/simulation-libraries/
+        
+
+  Both locations can be changed by editing the appropriate entries in the
+  preferences.xml file, located in the root of the FGS distribution.
+
+
+
+3. Run FGS
+-------------------------------------------------------------------------------
+
+  FGS comes packed in a JAR file, which means it can be run by simply invoking
+  
+    java -jar simulator.jar
+    
+  This distribution, however, comes with (Unix) shell scripts to facilitate
+  the customization of this invocation (e.g., to change the virtual machine's
+  parameters):
+  
+    - fgs.sh: Invokes FGS with custom JVM parameters.
+    - examples.sh: Invokes particular FGS simulation examples that come
+      with the distribution.
+  
+  

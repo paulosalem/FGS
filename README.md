@@ -24,7 +24,7 @@ This software is best understood by referring to the thesis. For an overview of 
 
 If you need help, would like to make comments or even built upon my programs, please feel free to contact me (at paulosalem@paulosalem.com). Since this is an experimental system, built irregularly over years, and subject to various changes of mind at different moments, you are sure to find loose ends, strange design decisions and a few bugs that still need to be fixed. I'd be glad to help you try to get through them. However, I am quite tired of _programming_ this system, so I can only offer advice! Also notice that you can replicate my main algorithms independently by following the descriptions given in the thesis. In fact, if you do so, I advise you to choose a non-garbage collected language, as FGS has some memory issues, possibly because of GC (it is implemented in Java).
 
-This is the overall proof-of-concept software that goes along with the thesis. If you wish to run the examples given there, or tweak the main simulation and verification algorithms, this is the only thing you need. However, FGS itself is built from more fundamental parts, whose sources have been given independent repositores for the sake of organization:
+This is the overall proof-of-concept software that goes along with the thesis. If you wish to run the examples given there this is the only thing you need. However, FGS itself is built from more fundamental parts, whose sources have been given independent repositores for the sake of organization:
 
   https://github.com/paulosalem/behaviorist_agent_architecture
   
@@ -32,6 +32,7 @@ This is the overall proof-of-concept software that goes along with the thesis. I
   
   https://github.com/paulosalem/ALEVOS
 
+In particular, the verification algorithms are implemented in the ALEVOS library.
 
 
 
